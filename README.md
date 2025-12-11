@@ -1,73 +1,100 @@
-# React + TypeScript + Vite
+# 🕹️ Assembly: Endgame (TypeScript Edition)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> A Hangman-style word-guessing game with a programming twist — now upgraded with TypeScript for safer and more scalable code.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📘 What we learnt
 
-## React Compiler
+01. **Vanilla TypeScript refresher**  
+02. **Typing `useState`**  
+03. **Typing React components**  
+04. **Typing React component props**  
+05. **Custom prop types**  
+06. **Imported types**  
+07. **Typing function props**
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 📝 Overview
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Assembly: Endgame is a lightweight React + TypeScript game where the player guesses a hidden word, letter by letter. Each incorrect guess advances the spread of Assembly languages (visualized as colored chips). Guess the word within the allowed attempts to win — or face a programming-language-themed farewell message.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+This project is great for frontend learners who want to practice React, TypeScript, accessibility (`aria-live` regions), component composition, and clean UI/UX patterns.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🚀 Features
+
+✨ **Key features include:**
+
+- 🔤 Letter-by-letter word guessing (Hangman-style)  
+- 🧩 Visual language chips showing remaining attempts  
+- 🎉 Confetti celebration on win (`react-confetti`)  
+- ♿ Accessible status updates using `aria-live`  
+- 🔁 Easy reset / new game flow  
+- ♻️ Strong state management with typed React hooks  
+
+---
+
+## 🧱 Tech Stack 🧩
+
+| Technology              | Purpose                                        |
+| ----------------------- | ---------------------------------------------- |
+| **React + TypeScript**  | Strongly-typed UI and components               |
+| react-confetti          | Win celebration animation                      |
+| clsx                    | Conditional class names                        |
+| nanoid                  | Unique IDs for dynamic lists                   |
+| CSS / custom styles     | UI styling and layout                          |
+
+---
+
+## ⚙️ Installation
+
+1. Clone the repo:
+
+```bash
+git clone <your-repo-url>
+cd your-repo
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+# or
+yarn
 ```
+
+3. Run the app:
+
+```bash
+npm start
+# or
+yarn start
+```
+
+---
+
+
+## 🧩 How it works (implementation notes)
+
+* The main component (`AssemblyEndgame`) uses `useState` to track the current word and guessed letters.
+* Derived values calculate `wrongGuessCount`, `isGameWon`, and `isGameLost`.
+* Language chips are rendered from a `languages` array (each language should include `name`, `backgroundColor`, and `color`).
+* The on-screen keyboard disables buttons after they are guessed and prevents additional input when the game is over.
+* Accessibility: status updates are provided via `aria-live` polite regions and a visually-hidden (`sr-only`) summary for screen reader users.
+---
+
+## 🖼️ Screenshots / Demo
+
+![App Screenshot](/src/assets/demo.png)
+
+
+## 💫 Author
+
+**Aliya** — [github.com/aliyasyeddd](https://github.com/aliyasyeddd)
+
+> *“Build. Break. Learn. Repeat.”*
+
+---
