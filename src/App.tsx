@@ -11,31 +11,30 @@ export default function AssemblyEndgame() {
     const [guessedLetters, setGuessedLetters] = useState<string[]>([])
 
     // Derived values
-    const numGuessesLeft = languages.length - 1
-    const wrongGuessCount =
-        guessedLetters.filter(letter => !currentWord.includes(letter)).length
-    const isGameWon =
-        currentWord.split("").every(letter => guessedLetters.includes(letter))
-    const isGameLost = wrongGuessCount >= numGuessesLeft
-    const isGameOver = isGameWon || isGameLost
-    const lastGuessedLetter = guessedLetters[guessedLetters.length - 1]
-    const isLastGuessIncorrect = lastGuessedLetter && !currentWord.includes(lastGuessedLetter)
+      const numGuessesLeft:number = languages.length - 1
+    const wrongGuessCount:number = guessedLetters.filter((letter:string):boolean => !currentWord.includes(letter)).length
+    const isGameWon:boolean = currentWord.split("").every((letter:string):boolean => guessedLetters.includes(letter))
+    const isGameLost:boolean = wrongGuessCount >= numGuessesLeft
+    const isGameOver:boolean = isGameWon || isGameLost
+    const lastGuessedLetter:string = guessedLetters[guessedLetters.length - 1]
+    const isLastGuessIncorrect:boolean = lastGuessedLetter && !currentWord.includes(lastGuessedLetter)
 
     // Static values
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
-    function addGuessedLetter(letter) {
-        setGuessedLetters(prevLetters =>
+    function addGuessedLetter(letter:string): void {
+        setGuessedLetters((prevLetters:string[]): string[] =>
             prevLetters.includes(letter) ?
                 prevLetters :
                 [...prevLetters, letter]
         )
     }
 
-    function startNewGame() {
+     function startNewGame():void {
         setCurrentWord(getRandomWord())
         setGuessedLetters([])
     }
+
 
     const languageElements = languages.map((lang, index) => {
         const isLanguageLost = index < wrongGuessCount
