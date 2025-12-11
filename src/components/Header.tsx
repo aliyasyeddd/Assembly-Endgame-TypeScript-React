@@ -1,6 +1,7 @@
-import type {JSX} from 'react'
+import type { JSX } from 'react'
 
-export default function Header():JSX.Element {
+//So as long as we're returning a JSX element like we would for most functional components we won't need to type a React component,
+export default function Header(): JSX.Element {
     return (
         <header>
             <h1>Assembly: Endgame</h1>
